@@ -12,6 +12,46 @@ body{background:var(--ink);color:var(--white);font-family:'DM Sans',sans-serif;o
 body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 90% 45% at 50% -5%,rgba(213,43,30,.16) 0%,transparent 65%),radial-gradient(ellipse 50% 40% at 90% 90%,rgba(201,148,58,.07) 0%,transparent 60%);pointer-events:none;z-index:0}
 .z1{position:relative;z-index:1}.container{max-width:1140px;margin:0 auto;padding:0 24px}
 
+/* LEAGUE SWITCHER */
+.league-switcher{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:48px}
+.league-btn{font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:2px;padding:10px 22px;border-radius:24px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);color:var(--muted);cursor:pointer;transition:all .2s}
+.league-btn:hover{border-color:rgba(201,148,58,.4);color:var(--white)}
+.league-btn.active{background:rgba(213,43,30,.15);border-color:rgba(213,43,30,.6);color:var(--white);box-shadow:0 0 16px rgba(213,43,30,.2)}
+
+/* INTL VIEW */
+.intl-view{display:none}
+.intl-view.visible{display:block}
+.nhl-view{display:block}
+.nhl-view.hidden{display:none}
+.intl-card{border:1px solid var(--border);border-radius:20px;padding:36px 32px;max-width:720px;margin:0 auto 48px;position:relative;overflow:hidden;background:linear-gradient(135deg,rgba(213,43,30,.07) 0%,rgba(17,14,7,0) 55%,rgba(201,148,58,.05) 100%)}
+.intl-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--red),var(--gold),var(--red),transparent)}
+.intl-flag{font-size:48px;display:block;text-align:center;margin-bottom:12px;filter:drop-shadow(0 0 12px rgba(213,43,30,.4))}
+.intl-title{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:3px;text-align:center;margin-bottom:4px}
+.intl-subtitle{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:24px}
+.intl-medals{display:flex;justify-content:center;gap:24px;margin-bottom:24px}
+.intl-medal{text-align:center}
+.intl-medal-n{font-family:'Bebas Neue',sans-serif;font-size:40px;line-height:1;display:block}
+.intl-medal-n.gold{color:var(--gold-light);filter:drop-shadow(0 0 8px rgba(201,148,58,.4))}
+.intl-medal-n.silver{color:#b0b0b0}
+.intl-medal-n.bronze{color:#cd7f32}
+.intl-medal-l{font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:2px}
+.intl-summary{font-size:12px;color:var(--muted);line-height:1.65;text-align:center;margin-bottom:20px}
+
+/* INTL TIMELINE */
+.intl-tl{margin-top:8px}
+.intl-tl-label{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.intl-bars{display:flex;gap:3px;align-items:flex-end;flex-wrap:wrap}
+.intl-yr-col{display:flex;flex-direction:column;align-items:center;gap:2px}
+.intl-yr-box{width:18px;height:18px;border-radius:3px;cursor:default;position:relative;transition:filter .12s}
+.intl-yr-box:hover{filter:brightness(1.5);z-index:10}
+.intl-yr-box.won{background:var(--won);box-shadow:0 0 5px rgba(232,196,106,.5)}
+.intl-yr-box.finals{background:var(--finals)}
+.intl-yr-box.playoffs{background:var(--playoffs)}
+.intl-yr-box.missed{background:var(--missed);border:1px solid rgba(255,255,255,.05)}
+.intl-yr-box.skip{background:transparent;border:1px dashed rgba(255,255,255,.04)}
+.intl-yr-box[data-tip]:hover::after{content:attr(data-tip);position:absolute;bottom:130%;left:50%;transform:translateX(-50%);background:var(--ink-mid);border:1px solid var(--border);color:var(--white);font-size:10px;white-space:nowrap;padding:3px 7px;border-radius:5px;pointer-events:none;z-index:100;font-family:'DM Sans',sans-serif}
+.intl-yr-lbl{font-size:7px;color:var(--muted);transform:rotate(-60deg);transform-origin:center top;display:block;white-space:nowrap;margin-top:2px}
+
 /* HERO */
 header{text-align:center;padding:64px 24px 40px}
 .leaf{font-size:44px;display:block;margin-bottom:14px;animation:pulse 3s ease-in-out infinite;filter:drop-shadow(0 0 22px rgba(213,43,30,.55))}
@@ -162,9 +202,20 @@ footer{text-align:center;padding:28px 24px 44px;border-top:1px solid var(--borde
 <header>
   <span class="leaf">🍁</span>
   <h1>Canada F***ing<br>Sucks At Hockey</h1>
-  <p class="subtitle">7 teams. 32 years. Zero cups. Someone had to say it.</p>
+  <!-- <p class="subtitle">7 teams. 32 years. Zero cups. Someone had to say it.</p> -->
 </header>
 
+<div class="league-switcher z1">
+  <button class="league-btn active" data-league="nhl">NHL</button>
+  <button class="league-btn" data-league="olympics-men">Olympics — Men's</button>
+  <button class="league-btn" data-league="olympics-women">Olympics — Women's</button>
+  <button class="league-btn" data-league="wjc-men">World Juniors — Men's</button>
+  <button class="league-btn" data-league="wjc-women">World Juniors — Women's</button>
+</div>
+
+<div class="intl-view z1" id="intl-view"></div>
+
+<div class="nhl-view" id="nhl-view">
 <div class="drought-wrap z1">
   <div class="drought-counter">
     <div class="drought-label">The National Drought — Live</div>
@@ -208,6 +259,8 @@ footer{text-align:center;padding:28px 24px 44px;border-top:1px solid var(--borde
   </div>
   <div class="combined-tl-body" id="combined-body"></div>
 </div>
+
+</div><!-- end nhl-view -->
 
 <footer>Made with <span class="maple">🍁</span> and unbridled rage. Someday, Canada. Probably not.</footer>
 </div></div>
@@ -563,6 +616,177 @@ document.querySelectorAll('.sort-btn').forEach(btn=>{
     document.querySelectorAll('.sort-btn').forEach(b=>b.classList.remove('active'));
     btn.classList.add('active');
     renderCards(currentSort);
+  });
+});
+
+// ── INTERNATIONAL LEAGUES ──────────────────────────────────────────────
+// result values: 'won'=gold, 'finals'=silver, 'playoffs'=bronze, 'missed'=no medal, 'skip'=no tournament
+const INTL_LEAGUES = {
+  'olympics-men': {
+    title: 'Men\'s Olympic Hockey',
+    subtitle: 'Canada — Winter Olympics',
+    summary: 'Canada invented the game and dominated early Olympics. After a 50-year gap they reclaimed gold in 2002, 2010, and 2014. The 2026 Milan Games? Silver. Lost to the USA in overtime. Again.',
+    lastGold: new Date('2014-02-23T23:00:00'),
+    lastGoldNote: 'Sochi 2014 — Beat Sweden 3–0 in the final. Last gold.',
+    golds: 9, silvers: 5, bronzes: 3,
+    history: {
+      1920:'won',1924:'won',1928:'won',1932:'won',1936:'missed',1948:'won',1952:'won',
+      1956:'bronze',1960:'missed',1964:'missed',1968:'playoffs',1972:'missed',
+      1976:'missed',1980:'playoffs',1984:'missed',1988:'missed',
+      1992:'playoffs',1994:'finals',1998:'finals',2002:'won',2006:'playoffs',
+      2010:'won',2014:'won',2018:'playoffs',2022:'playoffs',2026:'finals'
+    },
+    legend:{won:'Gold',finals:'Silver',playoffs:'Bronze',missed:'No Medal'},
+    wlLabel:'Golds since 1920'
+  },
+  'olympics-women': {
+    title: 'Women\'s Olympic Hockey',
+    subtitle: 'Canada — Winter Olympics',
+    summary: 'Canada has dominated women\'s Olympic hockey, winning gold 5 times in 8 tournaments. But both 2018 and 2026 ended in silver, losing to the USA. The dynasty is being challenged.',
+    lastGold: new Date('2022-02-17T23:00:00'),
+    lastGoldNote: 'Beijing 2022 — Beat USA 3–2 in the final. Last gold.',
+    golds: 5, silvers: 3, bronzes: 0,
+    history: {
+      1998:'finals',2002:'won',2006:'won',2010:'won',2014:'won',2018:'finals',2022:'won',2026:'finals'
+    },
+    legend:{won:'Gold',finals:'Silver',playoffs:'Bronze',missed:'No Medal'},
+    wlLabel:'Golds since 1998'
+  },
+  'wjc-men': {
+    title: 'Men\'s World Juniors',
+    subtitle: 'Canada — IIHF World Junior Championship',
+    summary: 'Canada owns 20 World Junior gold medals, more than any nation. But 2026 brought only bronze, and they\'ve gone 3 straight years without gold. The junior pipeline has a leak.',
+    lastGold: new Date('2023-01-05T23:00:00'),
+    lastGoldNote: '2023 Halifax — Beat Czechia 3–2 OT in the final.',
+    golds: 20, silvers: 10, bronzes: 6,
+    history: {
+      1977:'finals',1978:'playoffs',1979:'missed',1980:'missed',1981:'missed',
+      1982:'won',1983:'playoffs',1984:'missed',1985:'won',1986:'finals',
+      1987:'missed',1988:'won',1989:'missed',1990:'won',1991:'won',
+      1992:'missed',1993:'won',1994:'won',1995:'won',1996:'won',
+      1997:'won',1998:'missed',1999:'finals',2000:'playoffs',2001:'playoffs',
+      2002:'finals',2003:'finals',2004:'finals',2005:'won',2006:'won',
+      2007:'won',2008:'won',2009:'won',2010:'finals',2011:'finals',
+      2012:'playoffs',2013:'playoffs',2014:'playoffs',2015:'won',2016:'missed',
+      2017:'finals',2018:'won',2019:'missed',2020:'won',2021:'finals',
+      2022:'won',2023:'won',2024:'missed',2025:'missed',2026:'playoffs'
+    },
+    legend:{won:'Gold',finals:'Silver',playoffs:'Bronze',missed:'No Medal'},
+    wlLabel:'Golds since 1977'
+  },
+  'wjc-women': {
+    title: 'Women\'s World Juniors (U18)',
+    subtitle: 'Canada — IIHF U18 Women\'s World Championship',
+    summary: 'Canada has been strong at the U18 level, with 8 gold medals. But the USA won the 2026 championship 2-0, and the Americans are closing the gap. The future is being contested.',
+    lastGold: new Date('2025-01-07T23:00:00'),
+    lastGoldNote: '2025 — Beat USA 3–0 in the final.',
+    golds: 8, silvers: 8, bronzes: 0,
+    history: {
+      2008:'finals',2009:'finals',2010:'won',2011:'finals',2012:'won',
+      2013:'won',2014:'won',2015:'finals',2016:'finals',2017:'finals',
+      2018:'won',2019:'missed',2020:'skip',2021:'won',2022:'won',
+      2023:'won',2024:'won',2025:'won',2026:'finals'
+    },
+    legend:{won:'Gold',finals:'Silver',playoffs:'Bronze',missed:'No Medal'},
+    wlLabel:'Golds since 2008'
+  }
+};
+
+function buildIntlView(leagueKey) {
+  const L = INTL_LEAGUES[leagueKey];
+  const intlView = document.getElementById('intl-view');
+  intlView.innerHTML = '';
+
+  // Drought counter
+  const droughtWrap = document.createElement('div');
+  droughtWrap.className = 'drought-wrap z1';
+  const e = elapsed(L.lastGold);
+  droughtWrap.innerHTML = `<div class="drought-counter">
+    <div class="drought-label">Gold Medal Drought — Live</div>
+    <div class="time-grid">
+      <div class="time-unit"><span class="time-value" id="il-y">${pad(e.y)}</span><div class="time-label">Years</div></div>
+      <div class="time-sep">:</div>
+      <div class="time-unit"><span class="time-value" id="il-d">${pad(e.d,3)}</span><div class="time-label">Days</div></div>
+      <div class="time-sep">:</div>
+      <div class="time-unit"><span class="time-value" id="il-h">${pad(e.h)}</span><div class="time-label">Hours</div></div>
+      <div class="time-sep">:</div>
+      <div class="time-unit"><span class="time-value" id="il-m">${pad(e.m)}</span><div class="time-label">Min</div></div>
+      <div class="time-sep">:</div>
+      <div class="time-unit"><span class="time-value" id="il-s">${pad(e.s)}</span><div class="time-label">Sec</div></div>
+    </div>
+    <p class="since-note">Since <strong>${L.lastGoldNote}</strong></p>
+  </div>`;
+  intlView.appendChild(droughtWrap);
+
+  // Canada card
+  const card = document.createElement('div');
+  card.className = 'intl-card z1';
+
+  // Build timeline HTML
+  const years = Object.keys(L.history).map(Number).sort((a,b)=>a-b);
+  let barsHTML = '';
+  years.forEach(y => {
+    const s = L.history[y];
+    const tip = `${y} — ${L.legend[s]||'No Medal'}`;
+    barsHTML += `<div class="intl-yr-col">
+      <div class="intl-yr-box ${s}" ${s!=='skip'?`data-tip="${tip}"`:''}></div>
+      <span class="intl-yr-lbl">${y%4===0||years.length<15?y:''}</span>
+    </div>`;
+  });
+
+  card.innerHTML = `
+    <span class="intl-flag">🍁</span>
+    <div class="intl-title">${L.title}</div>
+    <div class="intl-subtitle">${L.subtitle}</div>
+    <div class="intl-medals">
+      <div class="intl-medal"><span class="intl-medal-n gold">🥇 ${L.golds}</span><div class="intl-medal-l">Gold</div></div>
+      <div class="intl-medal"><span class="intl-medal-n silver">🥈 ${L.silvers}</span><div class="intl-medal-l">Silver</div></div>
+      <div class="intl-medal"><span class="intl-medal-n bronze">🥉 ${L.bronzes}</span><div class="intl-medal-l">Bronze</div></div>
+    </div>
+    <div class="intl-summary">${L.summary}</div>
+    <hr class="divider">
+    <div class="intl-tl">
+      <div class="intl-tl-label">Tournament History</div>
+      <div class="intl-bars">${barsHTML}</div>
+    </div>
+    <div class="tl-legend" style="margin-top:14px;justify-content:center">
+      <div class="tl-legend-item"><div class="tl-legend-dot" style="background:var(--won)"></div>Gold</div>
+      <div class="tl-legend-item"><div class="tl-legend-dot" style="background:var(--finals)"></div>Silver</div>
+      <div class="tl-legend-item"><div class="tl-legend-dot" style="background:var(--playoffs)"></div>Bronze</div>
+      <div class="tl-legend-item"><div class="tl-legend-dot" style="background:var(--missed);border:1px solid rgba(255,255,255,.1)"></div>No Medal</div>
+    </div>
+  `;
+  intlView.appendChild(card);
+
+  // Live ticker for intl drought
+  clearInterval(window._intlTicker);
+  window._intlTicker = setInterval(()=>{
+    const e2=elapsed(L.lastGold);
+    ['y','d','h','m','s'].forEach(k=>{
+      const el=document.getElementById(`il-${k}`);
+      if(el) el.textContent=pad(e2[k],k==='d'?3:2);
+    });
+  },1000);
+}
+
+// League switcher logic
+const nhlView = document.getElementById('nhl-view');
+const intlView = document.getElementById('intl-view');
+
+document.querySelectorAll('.league-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.league-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const league = btn.dataset.league;
+    if(league === 'nhl'){
+      nhlView.classList.remove('hidden');
+      intlView.classList.remove('visible');
+      clearInterval(window._intlTicker);
+    } else {
+      nhlView.classList.add('hidden');
+      intlView.classList.add('visible');
+      buildIntlView(league);
+    }
   });
 });
 </script>
