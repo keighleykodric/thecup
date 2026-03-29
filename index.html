@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bring the Cup Back</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--red:#D52B1E;--gold:#C9943A;--gold-light:#E8C46A;--white:#F8F4EE;--ink:#110E07;--ink-mid:#2A2218;--muted:#6A6055;--border:rgba(201,148,58,0.2);--won:#E8C46A;--finals:#D52B1E;--playoffs:#3A7A52;--missed:#1E1810}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--ink);color:var(--white);font-family:'DM Sans',sans-serif;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 90% 45% at 50% -5%,rgba(213,43,30,.16) 0%,transparent 65%),radial-gradient(ellipse 50% 40% at 90% 90%,rgba(201,148,58,.07) 0%,transparent 60%);pointer-events:none;z-index:0}
+.z1{position:relative;z-index:1}.container{max-width:1140px;margin:0 auto;padding:0 24px}
+
+/* HERO */
+header{text-align:center;padding:64px 24px 40px}
+.leaf{font-size:44px;display:block;margin-bottom:14px;animation:pulse 3s ease-in-out infinite;filter:drop-shadow(0 0 22px rgba(213,43,30,.55))}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.07);filter:drop-shadow(0 0 38px rgba(213,43,30,.85))}}
+h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,10vw,96px);line-height:.92;letter-spacing:2px;background:linear-gradient(155deg,var(--white) 25%,var(--gold-light) 65%,#FF6B35 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.subtitle{font-family:'DM Serif Display',serif;font-style:italic;color:var(--muted);font-size:17px;margin-top:12px}
+
+/* NATIONAL COUNTER */
+.drought-wrap{max-width:860px;margin:0 auto 72px}
+.drought-counter{background:linear-gradient(135deg,rgba(213,43,30,.10) 0%,rgba(17,14,7,0) 55%,rgba(201,148,58,.07) 100%);border:1px solid var(--border);border-radius:20px;padding:44px 28px 36px;text-align:center;position:relative;overflow:hidden}
+.drought-counter::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--red),var(--gold),var(--red),transparent)}
+.drought-label{font-family:'Bebas Neue',sans-serif;letter-spacing:4px;font-size:12px;color:var(--gold);margin-bottom:22px}
+.time-grid{display:flex;justify-content:center;align-items:flex-start;gap:8px;flex-wrap:wrap}
+.time-unit{text-align:center;min-width:96px}
+.time-value{font-family:'Bebas Neue',sans-serif;font-size:clamp(56px,9vw,96px);line-height:1;background:linear-gradient(180deg,var(--white) 0%,var(--gold-light) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block}
+.time-label{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-top:5px}
+.time-sep{font-family:'Bebas Neue',sans-serif;font-size:64px;color:var(--red);opacity:.4;line-height:1;padding-top:4px}
+.since-note{font-size:12px;color:var(--muted);margin-top:18px}
+.since-note strong{color:var(--gold-light);font-weight:500}
+
+/* SECTION HEADERS */
+.sec-head{text-align:center;margin-bottom:40px}.sec-title{font-family:'Bebas Neue',sans-serif;font-size:34px;letter-spacing:3px}
+.sec-line{width:56px;height:2px;background:linear-gradient(90deg,var(--red),var(--gold));margin:10px auto 0;border-radius:2px}
+
+/* TEAM CARDS */
+.teams-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;margin-bottom:20px}
+.team-card{border:1px solid var(--border);border-radius:16px;padding:26px 22px;position:relative;overflow:hidden;transition:transform .22s,border-color .22s}
+.team-card:hover{transform:translateY(-3px);border-color:var(--team-color,rgba(201,148,58,.45));box-shadow:0 8px 32px var(--team-glow,rgba(0,0,0,.3))}
+.team-card.champion{border-color:rgba(201,148,58,.4);background:linear-gradient(135deg,rgba(201,148,58,.07) 0%,rgba(17,14,7,.4) 100%)}
+.champ-badge{position:absolute;top:10px;left:14px;font-size:9px;letter-spacing:1.5px;color:var(--gold);background:rgba(17,14,7,.7);border:1px solid rgba(201,148,58,.4);padding:3px 8px;border-radius:20px;z-index:2;backdrop-filter:blur(4px)}
+.card-brand-strip{margin:-26px -22px 18px;height:96px;border-radius:15px 15px 0 0;overflow:hidden;position:relative;display:flex;align-items:center;justify-content:flex-end;padding:0 20px}
+.card-brand-strip::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(17,14,7,0) 40%,var(--ink-mid) 100%);pointer-events:none}
+.team-logo{width:80px;height:80px;object-fit:contain;flex-shrink:0;filter:drop-shadow(0 0 16px rgba(0,0,0,.7));position:relative;z-index:1}
+.team-header-row{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:14px}
+.team-name{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:1px;line-height:1;margin-bottom:3px}
+.team-city{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+.team-cups{display:flex;align-items:baseline;gap:6px;flex-shrink:0}
+.cups-n{font-family:'Bebas Neue',sans-serif;font-size:40px;line-height:1}
+.cups-l{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+.cups-e{font-size:18px;margin-left:auto;opacity:.65}
+.divider{border:none;border-top:1px solid rgba(255,255,255,.05);margin:12px 0}
+.team-drought{display:flex;gap:8px;margin:0 0 12px;background:rgba(0,0,0,.22);border-radius:10px;padding:10px 12px;border:1px solid rgba(255,255,255,.05)}
+.td-unit{text-align:center;flex:1}
+.td-val{font-family:'Bebas Neue',sans-serif;font-size:20px;line-height:1;color:var(--gold-light);display:block}
+.td-lbl{font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+.td-never{font-family:'DM Serif Display',serif;font-style:italic;color:var(--muted);font-size:13px;padding:8px 0;text-align:center;width:100%}
+.team-summary{font-size:12px;color:var(--muted);line-height:1.65}
+.closest-wrap{margin-top:12px}
+.sub-label{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.closest-item{display:flex;gap:10px;margin-bottom:8px;background:rgba(0,0,0,.18);border-radius:8px;padding:9px 10px;border:1px solid rgba(255,255,255,.04)}
+.closest-item:last-child{margin-bottom:0}
+.closest-icon{font-size:15px;flex-shrink:0;padding-top:1px}
+.closest-text{font-size:11.5px;color:var(--muted);line-height:1.55}
+.closest-text strong{color:var(--white);font-weight:500;display:block;margin-bottom:2px}
+.closest-text em{color:rgba(232,196,106,.6);font-style:normal;font-size:11px}
+
+/* TEAM STAT CHIPS */
+.team-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:12px}
+.ts-item{background:rgba(0,0,0,.22);border-radius:8px;padding:9px 8px 8px;border:1px solid rgba(255,255,255,.05);text-align:center}
+.ts-val{font-family:'Bebas Neue',sans-serif;font-size:20px;line-height:1;display:block}
+.ts-lbl{font-size:7.5px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:3px}
+.ts-pct-bar{height:3px;border-radius:2px;background:rgba(255,255,255,.07);margin-top:6px;overflow:hidden}
+.ts-pct-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--playoffs),var(--gold))}
+.ts-streak-pos{color:var(--playoffs)}
+.ts-streak-neg{color:var(--muted)}
+.ts-last-playoff{font-size:10.5px;color:var(--muted);margin-bottom:10px;padding:0 2px}
+
+/* IN-CARD MINI TIMELINE */
+.card-tl-wrap{margin-top:12px}
+.card-tl-scroll{overflow-x:auto;padding-bottom:2px}
+.card-tl-inner{min-width:max-content}
+.card-bars{display:flex;gap:2px;align-items:flex-end;margin-bottom:3px}
+.card-yr-box{width:7px;height:22px;border-radius:2px;position:relative;transition:transform .12s,filter .12s;cursor:default;flex-shrink:0}
+.card-yr-box:hover{transform:scaleY(1.3);z-index:20;filter:brightness(1.4)}
+.card-yr-box.won{background:var(--won);box-shadow:0 0 5px rgba(232,196,106,.5)}
+.card-yr-box.finals{background:var(--finals)}
+.card-yr-box.playoffs{background:var(--playoffs)}
+.card-yr-box.missed{background:var(--missed);border:1px solid rgba(255,255,255,.05)}
+.card-yr-box.pre{background:transparent;border:1px dashed rgba(255,255,255,.04)}
+.card-yr-box[data-tip]:hover::after{content:attr(data-tip);position:absolute;bottom:130%;left:50%;transform:translateX(-50%);background:var(--ink-mid);border:1px solid var(--border);color:var(--white);font-size:10px;white-space:nowrap;padding:3px 7px;border-radius:5px;pointer-events:none;z-index:100;font-family:'DM Sans',sans-serif}
+.card-yr-labels{display:flex;gap:2px}
+.card-yr-lbl{width:7px;flex-shrink:0;font-size:7px;color:var(--muted);text-align:center;overflow:visible;white-space:nowrap;transform:translateX(-50%) rotate(-60deg);transform-origin:center top;display:block;margin-top:2px}
+
+/* COMBINED TIMELINE */
+.combined-tl{border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:80px}
+.combined-tl-header{padding:20px 24px 16px;background:rgba(255,255,255,.015);border-bottom:1px solid var(--border)}
+.combined-tl-title{font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:3px;color:var(--muted);margin-bottom:14px}
+.tl-legend{display:flex;gap:18px;flex-wrap:wrap}
+.tl-legend-item{display:flex;align-items:center;gap:6px;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}
+.tl-legend-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+.combined-tl-body{padding:20px 24px 24px;overflow-x:auto}
+.ctl-inner{min-width:max-content}
+/* shared year axis at top */
+.ctl-axis{display:flex;gap:2px;padding-left:160px;margin-bottom:6px}
+.ctl-axis-lbl{width:9px;flex-shrink:0;font-size:8px;color:var(--muted);overflow:visible;white-space:nowrap;transform:rotate(-55deg);transform-origin:left center;display:block}
+.ctl-row{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+.ctl-row:last-child{margin-bottom:0}
+.ctl-label{display:flex;align-items:center;gap:7px;width:148px;flex-shrink:0}
+.ctl-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.ctl-name{font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:1px;color:var(--white);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ctl-bars{display:flex;gap:2px;align-items:center}
+.ctly-box{width:9px;height:22px;border-radius:2px;cursor:default;position:relative;transition:transform .1s,filter .1s;flex-shrink:0}
+.ctly-box:hover{transform:scaleY(1.35);z-index:10;filter:brightness(1.4)}
+.ctly-box.won{background:var(--won);box-shadow:0 0 5px rgba(232,196,106,.5)}
+.ctly-box.finals{background:var(--finals)}
+.ctly-box.playoffs{background:var(--playoffs)}
+.ctly-box.missed{background:var(--missed);border:1px solid rgba(255,255,255,.04)}
+.ctly-box.gap{background:transparent;border:none}
+.ctly-box[data-tip]:hover::after{content:attr(data-tip);position:absolute;bottom:130%;left:50%;transform:translateX(-50%);background:var(--ink-mid);border:1px solid var(--border);color:var(--white);font-size:10px;white-space:nowrap;padding:3px 7px;border-radius:5px;pointer-events:none;z-index:100;font-family:'DM Sans',sans-serif}
+
+footer{text-align:center;padding:28px 24px 44px;border-top:1px solid var(--border);color:var(--muted);font-size:12px}
+.maple{color:var(--red)}
+@media(max-width:600px){.time-unit{min-width:60px}.time-sep{font-size:44px}.teams-grid{grid-template-columns:1fr}.ctl-label{width:100px}}
+</style>
+</head>
+<body>
+<div class="z1"><div class="container">
+
+<header>
+  <span class="leaf">🍁</span>
+  <h1>Bring the<br>Cup Back</h1>
+  <p class="subtitle">Canada's longest-running heartbreak, measured in seconds.</p>
+</header>
+
+<div class="drought-wrap z1">
+  <div class="drought-counter">
+    <div class="drought-label">The National Drought — Live</div>
+    <div class="time-grid">
+      <div class="time-unit"><span class="time-value" id="ny">00</span><div class="time-label">Years</div></div>
+      <div class="time-sep">:</div>
+      <div class="time-unit"><span class="time-value" id="nd">000</span><div class="time-label">Days</div></div>
+      <div class="time-sep">:</div>
+      <div class="time-unit"><span class="time-value" id="nh">00</span><div class="time-label">Hours</div></div>
+      <div class="time-sep">:</div>
+      <div class="time-unit"><span class="time-value" id="nm">00</span><div class="time-label">Min</div></div>
+      <div class="time-sep">:</div>
+      <div class="time-unit"><span class="time-value" id="ns">00</span><div class="time-label">Sec</div></div>
+    </div>
+    <p class="since-note">Since <strong>June 9, 1993</strong> — Montréal Canadiens defeat the LA Kings</p>
+  </div>
+</div>
+
+<!-- TEAM CARDS -->
+<div class="sec-head z1"><div class="sec-title">Team Droughts &amp; Cup History</div><div class="sec-line"></div></div>
+<div class="teams-grid z1" id="teams-grid"></div>
+
+<!-- COMBINED TIMELINE -->
+<div class="sec-head z1" style="margin-top:68px"><div class="sec-title">All Teams — Combined Timeline</div><div class="sec-line"></div></div>
+<div class="combined-tl z1">
+  <div class="combined-tl-header">
+    <div class="combined-tl-title">Every Canadian NHL season, most recent first</div>
+    <div class="tl-legend">
+      <div class="tl-legend-item"><div class="tl-legend-dot" style="background:var(--won)"></div>Won Cup</div>
+      <div class="tl-legend-item"><div class="tl-legend-dot" style="background:var(--finals)"></div>Lost in Finals</div>
+      <div class="tl-legend-item"><div class="tl-legend-dot" style="background:var(--playoffs)"></div>Made Playoffs</div>
+      <div class="tl-legend-item"><div class="tl-legend-dot" style="background:var(--missed);border:1px solid rgba(255,255,255,.1)"></div>Missed Playoffs</div>
+    </div>
+  </div>
+  <div class="combined-tl-body" id="combined-body"></div>
+</div>
+
+<footer>Made with <span class="maple">🍁</span> and a lot of patience. Someday, Canada. Someday.</footer>
+</div></div>
+
+<script>
+const TEAMS = [
+  {
+    id:'mtl',name:'Canadiens',city:'Montréal',color:'#AF1E2D',color2:'#003DA5',logo:'https://assets.nhle.com/logos/nhl/svg/MTL_light.svg',cups:24,
+    lastWin:new Date('1993-06-09T23:00:00'),champion:true,founded:1918,
+    summary:"The most storied franchise in hockey history. Their late-70s dynasty — four straight Cups — remains the gold standard. 1993 was their last, and Canada's last.",
+    closest:null,
+    history:{1918:'won',1919:'missed',1920:'playoffs',1921:'won',1922:'playoffs',1923:'won',1924:'won',1925:'playoffs',1926:'playoffs',1927:'playoffs',1928:'playoffs',1929:'playoffs',1930:'won',1931:'won',1932:'missed',1933:'playoffs',1934:'missed',1935:'playoffs',1936:'missed',1937:'playoffs',1938:'missed',1939:'playoffs',1940:'missed',1941:'playoffs',1942:'playoffs',1943:'playoffs',1944:'won',1945:'playoffs',1946:'won',1947:'playoffs',1948:'playoffs',1949:'playoffs',1950:'playoffs',1951:'finals',1952:'playoffs',1953:'won',1954:'finals',1955:'finals',1956:'won',1957:'won',1958:'won',1959:'won',1960:'won',1961:'playoffs',1962:'playoffs',1963:'playoffs',1964:'playoffs',1965:'won',1966:'won',1967:'finals',1968:'won',1969:'won',1970:'playoffs',1971:'won',1972:'playoffs',1973:'won',1974:'finals',1975:'playoffs',1976:'won',1977:'won',1978:'won',1979:'won',1980:'finals',1981:'playoffs',1982:'playoffs',1983:'playoffs',1984:'playoffs',1985:'playoffs',1986:'won',1987:'playoffs',1988:'playoffs',1989:'playoffs',1990:'playoffs',1991:'missed',1992:'playoffs',1993:'won',1994:'playoffs',1995:'playoffs',1996:'playoffs',1997:'missed',1998:'playoffs',1999:'missed',2000:'missed',2001:'missed',2002:'playoffs',2003:'missed',2004:'playoffs',2006:'playoffs',2007:'playoffs',2008:'playoffs',2009:'playoffs',2010:'playoffs',2011:'missed',2012:'playoffs',2013:'playoffs',2014:'playoffs',2015:'playoffs',2016:'missed',2017:'playoffs',2018:'playoffs',2019:'missed',2020:'playoffs',2021:'finals',2022:'missed',2023:'missed',2024:'missed',2025:'missed'}
+  },
+  {
+    id:'tor',name:'Maple Leafs',city:'Toronto',color:'#00205B',color2:'#5E9BCA',logo:'https://assets.nhle.com/logos/nhl/svg/TOR_light.svg',cups:13,
+    lastWin:new Date('1967-05-02T23:00:00'),champion:false,founded:1918,
+    summary:"Thirteen championships, none since 1967. The longest active drought of any original six team. Every spring, Toronto believes. Every spring, Toronto grieves.",
+    closest:{
+      finals:{year:1967,opponent:'Montréal Canadiens',result:'Lost 4–2',note:'Last Cup appearance. Lost Game 6 at home 3–1. 58 years and counting.'},
+      game7:{year:1993,opponent:'Los Angeles Kings',round:'Conference Finals',result:'Lost 5–4 OT',note:'A Gretzky high-stick call reversed changed the series. One round from the Finals.'}
+    },
+    history:{1918:'won',1919:'missed',1920:'missed',1921:'missed',1922:'won',1923:'missed',1924:'missed',1925:'missed',1926:'missed',1927:'missed',1928:'playoffs',1929:'playoffs',1930:'playoffs',1931:'playoffs',1932:'won',1933:'playoffs',1934:'playoffs',1935:'playoffs',1936:'missed',1937:'playoffs',1938:'playoffs',1939:'playoffs',1940:'playoffs',1941:'playoffs',1942:'won',1943:'playoffs',1944:'playoffs',1945:'won',1946:'playoffs',1947:'won',1948:'won',1949:'won',1950:'playoffs',1951:'won',1952:'playoffs',1953:'playoffs',1954:'playoffs',1955:'playoffs',1956:'missed',1957:'playoffs',1958:'playoffs',1959:'playoffs',1960:'playoffs',1961:'playoffs',1962:'won',1963:'won',1964:'won',1965:'playoffs',1966:'playoffs',1967:'won',1968:'missed',1969:'missed',1970:'playoffs',1971:'playoffs',1972:'playoffs',1973:'playoffs',1974:'playoffs',1975:'playoffs',1976:'playoffs',1977:'playoffs',1978:'playoffs',1979:'playoffs',1980:'playoffs',1981:'missed',1982:'missed',1983:'missed',1984:'missed',1985:'missed',1986:'missed',1987:'missed',1988:'missed',1989:'missed',1990:'missed',1991:'missed',1992:'playoffs',1993:'playoffs',1994:'playoffs',1995:'missed',1996:'playoffs',1997:'missed',1998:'missed',1999:'missed',2000:'missed',2001:'playoffs',2002:'playoffs',2003:'playoffs',2004:'missed',2006:'missed',2007:'missed',2008:'missed',2009:'missed',2010:'missed',2011:'missed',2012:'missed',2013:'playoffs',2014:'missed',2015:'missed',2016:'missed',2017:'playoffs',2018:'playoffs',2019:'playoffs',2020:'playoffs',2021:'playoffs',2022:'playoffs',2023:'playoffs',2024:'playoffs',2025:'missed'}
+  },
+  {
+    id:'edm',name:'Oilers',city:'Edmonton',color:'#FF4C00',color2:'#00205B',logo:'https://assets.nhle.com/logos/nhl/svg/EDM_light.svg',cups:5,
+    lastWin:new Date('1990-05-24T23:00:00'),champion:false,founded:1980,
+    summary:"The Gretzky dynasty — five Cups in seven years. The closest Canada has come since 1993 was 2024, falling to Florida in Game 7. So heartbreakingly close.",
+    closest:{
+      finals:{year:2024,opponent:'Florida Panthers',result:'Lost 4–3',note:'Led the series 3–2 and forced Game 7. Canada held its breath for the first time in 31 years.'},
+      game7:{year:2024,opponent:'Florida Panthers',round:'Stanley Cup Finals',result:'Lost 2–1',note:'Reinhart scored the Cup winner. One goal from ending the drought.'}
+    },
+    history:{1980:'playoffs',1981:'playoffs',1982:'playoffs',1983:'finals',1984:'won',1985:'won',1986:'playoffs',1987:'won',1988:'won',1989:'playoffs',1990:'won',1991:'playoffs',1992:'playoffs',1993:'playoffs',1994:'playoffs',1995:'missed',1996:'missed',1997:'missed',1998:'missed',1999:'missed',2000:'missed',2001:'missed',2002:'missed',2003:'playoffs',2004:'missed',2006:'finals',2007:'missed',2008:'missed',2009:'missed',2010:'missed',2011:'missed',2012:'missed',2013:'missed',2014:'missed',2015:'missed',2016:'missed',2017:'playoffs',2018:'missed',2019:'missed',2020:'missed',2021:'missed',2022:'playoffs',2023:'playoffs',2024:'finals',2025:'playoffs'}
+  },
+  {
+    id:'cgy',name:'Flames',city:'Calgary',color:'#D2001C',color2:'#F1BE48',logo:'https://assets.nhle.com/logos/nhl/svg/CGY_light.svg',cups:1,
+    lastWin:new Date('1989-05-25T23:00:00'),champion:false,founded:1981,
+    summary:"One glorious night in 1989 — Lanny McDonald's last game, on enemy ice in Montréal. The city has been chasing that feeling for 35+ years.",
+    closest:{
+      finals:{year:2004,opponent:'Tampa Bay Lightning',result:'Lost 4–3',note:'Led the series 3–2. Lost Games 6 and 7 by a combined two goals.'},
+      game7:{year:2004,opponent:'Tampa Bay Lightning',round:'Stanley Cup Finals',result:'Lost 2–1',note:'Lecavalier scored the Cup winner in the third. Calgary was 20 minutes from the title.'}
+    },
+    history:{1981:'playoffs',1982:'finals',1983:'playoffs',1984:'playoffs',1985:'finals',1986:'playoffs',1987:'playoffs',1988:'finals',1989:'won',1990:'playoffs',1991:'playoffs',1992:'playoffs',1993:'playoffs',1994:'playoffs',1995:'missed',1996:'missed',1997:'missed',1998:'missed',1999:'missed',2000:'playoffs',2001:'playoffs',2002:'playoffs',2003:'playoffs',2004:'finals',2006:'missed',2007:'playoffs',2008:'playoffs',2009:'missed',2010:'missed',2011:'missed',2012:'missed',2013:'missed',2014:'missed',2015:'playoffs',2016:'missed',2017:'missed',2018:'playoffs',2019:'playoffs',2020:'playoffs',2021:'playoffs',2022:'playoffs',2023:'missed',2024:'missed',2025:'missed'}
+  },
+  {
+    id:'ott',name:'Senators',city:'Ottawa',color:'#C52032',color2:'#C69214',logo:'https://assets.nhle.com/logos/nhl/svg/OTT_light.svg',cups:4,
+    lastWin:new Date('1927-04-13T23:00:00'),champion:false,founded:1993,
+    summary:"The original Senators won four Cups in the 1920s. The modern franchise came agonizingly close in 2007, losing to Anaheim in five. Still hunting.",
+    closest:{
+      finals:{year:2007,opponent:'Anaheim Ducks',result:'Lost 4–1',note:'Reached the Finals for the first and only time. Lost Game 5 in Anaheim 6–2.'},
+      game7:{year:2004,opponent:'Toronto Maple Leafs',round:'Conference Quarterfinals',result:'Lost 4–3 OT',note:'Sundin scored the Game 7 OT winner. Ottawa was the better team that year.'}
+    },
+    history:{1993:'missed',1994:'playoffs',1995:'missed',1996:'missed',1997:'missed',1998:'playoffs',1999:'playoffs',2000:'missed',2001:'playoffs',2002:'playoffs',2003:'playoffs',2004:'playoffs',2006:'playoffs',2007:'finals',2008:'playoffs',2009:'missed',2010:'missed',2011:'missed',2012:'missed',2013:'playoffs',2014:'missed',2015:'missed',2016:'missed',2017:'playoffs',2018:'missed',2019:'missed',2020:'missed',2021:'missed',2022:'missed',2023:'missed',2024:'missed',2025:'missed'}
+  },
+  {
+    id:'wpg',name:'Jets',city:'Winnipeg',color:'#041E42',color2:'#AC162C',logo:'https://assets.nhle.com/logos/nhl/svg/WPG_light.svg',cups:0,
+    lastWin:null,champion:false,founded:2012,
+    summary:"Back since 2011, the Jets have built one of the loudest barns in hockey. Deep runs, passionate fans — no Cup yet, but the belief never wavers.",
+    closest:{
+      finals:null,
+      game7:{year:2018,opponent:'Vegas Golden Knights',round:'Conference Finals',result:'Lost 4–1',note:'Eliminated in five by Vegas in their first conference finals. The barn was electric all spring.'}
+    },
+    history:{2012:'playoffs',2013:'missed',2014:'missed',2015:'missed',2016:'missed',2017:'playoffs',2018:'playoffs',2019:'playoffs',2020:'missed',2021:'missed',2022:'playoffs',2023:'missed',2024:'missed',2025:'playoffs'}
+  },
+  {
+    id:'van',name:'Canucks',city:'Vancouver',color:'#00843D',color2:'#00205B',logo:'https://assets.nhle.com/logos/nhl/svg/VAN_light.svg',cups:0,
+    lastWin:null,champion:false,founded:1971,
+    summary:"Two heartbreaking Finals — 1982 and 1994. Pavel Bure. Trevor Linden. Game 7. The 1994 run still haunts a generation of fans on the west coast.",
+    closest:{
+      finals:{year:1994,opponent:'New York Rangers',result:'Lost 4–3',note:"Led Game 7 into the third period. Linden scored twice but Messier's Rangers held on."},
+      game7:{year:1994,opponent:'New York Rangers',round:'Stanley Cup Finals',result:'Lost 3–2',note:'Linden scored shorthanded to make it 3–2. The Cup was one period away. It never came.'}
+    },
+    history:{1971:'missed',1972:'missed',1973:'missed',1974:'missed',1975:'playoffs',1976:'missed',1977:'missed',1978:'missed',1979:'missed',1980:'playoffs',1981:'playoffs',1982:'finals',1983:'playoffs',1984:'missed',1985:'missed',1986:'playoffs',1987:'missed',1988:'missed',1989:'missed',1990:'missed',1991:'missed',1992:'playoffs',1993:'playoffs',1994:'finals',1995:'playoffs',1996:'playoffs',1997:'missed',1998:'missed',1999:'missed',2000:'missed',2001:'missed',2002:'playoffs',2003:'playoffs',2004:'missed',2006:'missed',2007:'playoffs',2008:'playoffs',2009:'playoffs',2010:'playoffs',2011:'finals',2012:'missed',2013:'playoffs',2014:'missed',2015:'missed',2016:'missed',2017:'missed',2018:'missed',2019:'missed',2020:'missed',2021:'missed',2022:'missed',2023:'playoffs',2024:'playoffs',2025:'missed'}
+  }
+];
+
+const SLABELS={won:'Won Cup',finals:'Lost in Finals',playoffs:'Made Playoffs',missed:'Missed Playoffs'};
+const LAST_WIN=new Date('1993-06-09T23:00:00');
+const ALL_YEARS=[];
+for(let y=2025;y>=1918;y--) ALL_YEARS.push(y);
+
+function elapsed(date){
+  const s=Math.floor((Date.now()-date)/1000),td=Math.floor(s/86400);
+  return{y:Math.floor(td/365.25),d:Math.floor(td%365.25),h:Math.floor((s%86400)/3600),m:Math.floor((s%3600)/60),s:s%60};
+}
+function pad(n,l=2){return String(n).padStart(l,'0')}
+
+// National counter
+function updateNational(){
+  const e=elapsed(LAST_WIN);
+  document.getElementById('ny').textContent=pad(e.y);
+  document.getElementById('nd').textContent=pad(e.d,3);
+  document.getElementById('nh').textContent=pad(e.h);
+  document.getElementById('nm').textContent=pad(e.m);
+  document.getElementById('ns').textContent=pad(e.s);
+}
+setInterval(updateNational,1000);updateNational();
+
+// Team counters
+function updateTeams(){
+  TEAMS.forEach(t=>{
+    if(!t.lastWin)return;
+    const e=elapsed(t.lastWin);
+    ['y','d','h','m','s'].forEach(k=>{
+      const el=document.getElementById(`${t.id}-${k}`);
+      if(el)el.textContent=pad(e[k],k==='d'?3:2);
+    });
+  });
+}
+setInterval(updateTeams,1000);
+
+function droughtHTML(t){
+  if(!t.lastWin)return`<div class="team-drought"><div class="td-never">No championship — ever</div></div>`;
+  const e=elapsed(t.lastWin);
+  return`<div class="team-drought">
+    <div class="td-unit"><span class="td-val" id="${t.id}-y">${pad(e.y)}</span><div class="td-lbl">Yrs</div></div>
+    <div class="td-unit"><span class="td-val" id="${t.id}-d">${pad(e.d,3)}</span><div class="td-lbl">Days</div></div>
+    <div class="td-unit"><span class="td-val" id="${t.id}-h">${pad(e.h)}</span><div class="td-lbl">Hrs</div></div>
+    <div class="td-unit"><span class="td-val" id="${t.id}-m">${pad(e.m)}</span><div class="td-lbl">Min</div></div>
+    <div class="td-unit"><span class="td-val" id="${t.id}-s">${pad(e.s)}</span><div class="td-lbl">Sec</div></div>
+  </div>`;
+}
+
+function closestHTML(t){
+  if(!t.closest)return'';
+  const{finals,game7}=t.closest;
+  let rows='';
+  if(finals) rows+=`<div class="closest-item"><div class="closest-icon">🏒</div><div class="closest-text"><strong>Best Finals Run — ${finals.year}</strong>${finals.result} vs ${finals.opponent}<br><em>${finals.note}</em></div></div>`;
+  if(game7)  rows+=`<div class="closest-item"><div class="closest-icon">💔</div><div class="closest-text"><strong>Closest Game 7 — ${game7.year}</strong>${game7.result} vs ${game7.opponent}${game7.round?` · ${game7.round}`:''}<br><em>${game7.note}</em></div></div>`;
+  if(!rows)return'';
+  return`<div class="closest-wrap"><div class="sub-label">How Close They Got</div>${rows}</div>`;
+}
+
+function statsHTML(t){
+  const entries=Object.entries(t.history).map(([y,s])=>({y:+y,s})).sort((a,b)=>b.y-a.y);
+  const total=entries.length;
+  const playoffSeasons=entries.filter(e=>e.s!=='missed').length;
+  const finalsApps=entries.filter(e=>e.s==='finals'||e.s==='won').length;
+  const playoffPct=Math.round(playoffSeasons/total*100);
+
+  // Current streak (from most recent season)
+  const firstStatus=entries[0]?.s;
+  const streakType=firstStatus!=='missed'?'playoffs':'missed';
+  let streak=0;
+  for(const{s}of entries){
+    const inPlayoffs=s!=='missed';
+    if(streakType==='playoffs'&&inPlayoffs)streak++;
+    else if(streakType==='missed'&&!inPlayoffs)streak++;
+    else break;
+  }
+
+  const lastPlayoff=streakType==='missed'?entries.find(e=>e.s!=='missed')?.y:null;
+  const streakClass=streakType==='playoffs'?'ts-streak-pos':'ts-streak-neg';
+  const streakLbl=streakType==='playoffs'?'Playoff Streak':'Miss Streak';
+
+  return`<div class="team-stats">
+    <div class="ts-item">
+      <span class="ts-val" style="color:var(--gold-light)">${playoffPct}%</span>
+      <div class="ts-lbl">Playoff Rate</div>
+      <div class="ts-pct-bar"><div class="ts-pct-fill" style="width:${playoffPct}%"></div></div>
+    </div>
+    <div class="ts-item">
+      <span class="ts-val" style="color:var(--finals)">${finalsApps}</span>
+      <div class="ts-lbl">Finals Apps</div>
+    </div>
+    <div class="ts-item">
+      <span class="ts-val ${streakClass}">${streak}</span>
+      <div class="ts-lbl">${streakLbl}</div>
+    </div>
+  </div>${lastPlayoff?`<div class="ts-last-playoff">Last playoff: <span style="color:var(--white);font-weight:500">${lastPlayoff}</span></div>`:''}`;
+}
+
+function cardTimelineHTML(t){
+  return`<div class="card-tl-wrap">
+    <div class="sub-label">Season Timeline</div>
+    <div class="card-tl-scroll"><div class="card-tl-inner" id="ctg-${t.id}"></div></div>
+  </div>`;
+}
+
+function buildCardTimeline(t){
+  const wrap=document.getElementById(`ctg-${t.id}`);
+  if(!wrap)return;
+  const years=[];
+  for(let y=t.founded;y<=2025;y++) years.push(y);
+
+  // bars row
+  const barsRow=document.createElement('div');
+  barsRow.className='card-bars';
+  // labels row
+  const labelsRow=document.createElement('div');
+  labelsRow.className='card-yr-labels';
+
+  years.forEach(y=>{
+    const status=t.history[y]||null;
+    const box=document.createElement('div');
+    box.className=`card-yr-box ${status||'pre'}`;
+    if(status) box.setAttribute('data-tip',`${y} — ${SLABELS[status]}`);
+    barsRow.appendChild(box);
+
+    const lbl=document.createElement('span');
+    lbl.className='card-yr-lbl';
+    lbl.textContent=y%5===0?String(y):'';
+    labelsRow.appendChild(lbl);
+  });
+
+  wrap.appendChild(barsRow);
+  wrap.appendChild(labelsRow);
+}
+
+// Render combined timeline
+const combinedBody=document.getElementById('combined-body');
+const inner=document.createElement('div');
+inner.className='ctl-inner';
+
+// axis label row
+const axisRow=document.createElement('div');
+axisRow.className='ctl-axis';
+ALL_YEARS.forEach(y=>{
+  const lbl=document.createElement('span');
+  lbl.className='ctl-axis-lbl';
+  lbl.textContent=y%5===0?String(y):'';
+  axisRow.appendChild(lbl);
+});
+inner.appendChild(axisRow);
+
+TEAMS.forEach(t=>{
+  const row=document.createElement('div');
+  row.className='ctl-row';
+
+  const label=document.createElement('div');
+  label.className='ctl-label';
+  label.innerHTML=`<div class="ctl-dot" style="background:${t.color}"></div><div class="ctl-name">${t.city} ${t.name}</div>`;
+
+  const bars=document.createElement('div');
+  bars.className='ctl-bars';
+
+  ALL_YEARS.forEach(y=>{
+    const box=document.createElement('div');
+    if(y<t.founded){
+      box.className='ctly-box gap';
+    } else {
+      const status=t.history[y]||null;
+      box.className=`ctly-box ${status||'missed'}`;
+      if(status) box.setAttribute('data-tip',`${t.name} ${y} — ${SLABELS[status]}`);
+    }
+    bars.appendChild(box);
+  });
+
+  row.appendChild(label);
+  row.appendChild(bars);
+  inner.appendChild(row);
+});
+
+combinedBody.appendChild(inner);
+
+// Render team cards
+const grid=document.getElementById('teams-grid');
+TEAMS.forEach(t=>{
+  const emoji=t.cups===0?'🫗':'';
+  const card=document.createElement('div');
+  card.className=`team-card${t.champion?' champion':''}`;
+  card.style.cssText=`--team-color:${t.color}99;--team-glow:${t.color}33`;
+  card.innerHTML=`
+    <div class="card-brand-strip" style="background:linear-gradient(135deg,${t.color}55 0%,${t.color2}33 60%,rgba(17,14,7,.6) 100%)">
+      ${t.champion?'<div class="champ-badge">★ Canada\'s Last</div>':''}
+      <img class="team-logo" src="${t.logo}" alt="${t.name}" loading="lazy" onerror="this.style.display='none'">
+    </div>
+    <div class="team-header-row">
+      <div><div class="team-name">${t.name}</div><div class="team-city">${t.city}</div></div>
+      <div class="team-cups">
+        <span class="cups-n" style="color:${t.cups>0?'var(--gold-light)':'var(--muted)'}">${t.cups}</span>
+        <span class="cups-l">${t.cups===1?'Cup':'Cups'}</span>
+        <span class="cups-e">${emoji}</span>
+      </div>
+    </div>
+    ${droughtHTML(t)}
+    <hr class="divider">
+    ${statsHTML(t)}
+    <div class="team-summary">${t.summary}</div>
+    ${closestHTML(t)}
+    <hr class="divider">
+    ${cardTimelineHTML(t)}
+  `;
+  grid.appendChild(card);
+  buildCardTimeline(t);
+});
+</script>
+</body>
+</html>
