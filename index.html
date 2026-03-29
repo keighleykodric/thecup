@@ -40,17 +40,17 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 /* INTL TIMELINE */
 .intl-tl{margin-top:8px}
 .intl-tl-label{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
-.intl-bars{display:flex;gap:3px;align-items:flex-end;flex-wrap:wrap}
-.intl-yr-col{display:flex;flex-direction:column;align-items:center;gap:2px}
+.intl-bars{display:flex;gap:3px;align-items:flex-end}
+.intl-yr-col{display:flex;flex-direction:column;align-items:center;gap:3px;flex-shrink:0}
 .intl-yr-box{width:18px;height:18px;border-radius:3px;cursor:default;position:relative;transition:filter .12s}
 .intl-yr-box:hover{filter:brightness(1.5);z-index:10}
-.intl-yr-box.won{background:var(--won);box-shadow:0 0 5px rgba(232,196,106,.5)}
-.intl-yr-box.finals{background:var(--finals)}
-.intl-yr-box.playoffs{background:var(--playoffs)}
+.intl-yr-box.won{background:#E8C46A;box-shadow:0 0 5px rgba(232,196,106,.5)}
+.intl-yr-box.finals{background:#A8A9AD}
+.intl-yr-box.playoffs{background:#A97142}
 .intl-yr-box.missed{background:var(--missed);border:1px solid rgba(255,255,255,.05)}
 .intl-yr-box.skip{background:transparent;border:1px dashed rgba(255,255,255,.04)}
 .intl-yr-box[data-tip]:hover::after{content:attr(data-tip);position:absolute;bottom:130%;left:50%;transform:translateX(-50%);background:var(--ink-mid);border:1px solid var(--border);color:var(--white);font-size:10px;white-space:nowrap;padding:3px 7px;border-radius:5px;pointer-events:none;z-index:100;font-family:'DM Sans',sans-serif}
-.intl-yr-lbl{font-size:7px;color:var(--muted);transform:rotate(-60deg);transform-origin:center top;display:block;white-space:nowrap;margin-top:2px}
+.intl-yr-lbl{font-size:7px;color:var(--muted);writing-mode:vertical-rl;transform:rotate(180deg);line-height:1;height:18px;display:flex;align-items:center;justify-content:center}
 
 /* HERO */
 header{text-align:center;padding:64px 24px 40px}
@@ -110,7 +110,8 @@ h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,10vw,96px);line-heig
 .closest-item:last-child{margin-bottom:0}
 .closest-icon{font-size:15px;flex-shrink:0;padding-top:1px}
 .closest-text{font-size:11.5px;color:var(--muted);line-height:1.55}
-.closest-text strong{color:var(--white);font-weight:500;display:block;margin-bottom:2px}
+.closest-text strong{color:var(--white);font-weight:500;margin-bottom:2px}
+.closest-text .year-tag{font-size:10px;font-weight:500;color:var(--muted);background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:4px;padding:1px 5px;vertical-align:middle;letter-spacing:.5px}
 .closest-text em{color:rgba(232,196,106,.6);font-style:normal;font-size:11px}
 
 /* SORT BAR */
@@ -152,7 +153,7 @@ h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,10vw,96px);line-heig
 .card-tl-wrap{margin-top:12px}
 .card-tl-scroll{overflow-x:auto;padding-bottom:2px}
 .card-tl-inner{min-width:max-content}
-.card-bars{display:flex;gap:2px;align-items:flex-end;margin-bottom:3px}
+.card-bars{display:flex;gap:2px;align-items:flex-end}
 .card-yr-box{width:7px;height:22px;border-radius:2px;position:relative;transition:transform .12s,filter .12s;cursor:default;flex-shrink:0}
 .card-yr-box:hover{transform:scaleY(1.3);z-index:20;filter:brightness(1.4)}
 .card-yr-box.won{background:var(--won);box-shadow:0 0 5px rgba(232,196,106,.5)}
@@ -161,8 +162,8 @@ h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,10vw,96px);line-heig
 .card-yr-box.missed{background:var(--missed);border:1px solid rgba(255,255,255,.05)}
 .card-yr-box.pre{background:transparent;border:1px dashed rgba(255,255,255,.04)}
 .card-yr-box[data-tip]:hover::after{content:attr(data-tip);position:absolute;bottom:130%;left:50%;transform:translateX(-50%);background:var(--ink-mid);border:1px solid var(--border);color:var(--white);font-size:10px;white-space:nowrap;padding:3px 7px;border-radius:5px;pointer-events:none;z-index:100;font-family:'DM Sans',sans-serif}
-.card-yr-labels{display:flex;gap:2px}
-.card-yr-lbl{width:7px;flex-shrink:0;font-size:7px;color:var(--muted);text-align:center;overflow:visible;white-space:nowrap;transform:translateX(-50%) rotate(-60deg);transform-origin:center top;display:block;margin-top:2px}
+.card-yr-col{display:flex;flex-direction:column;align-items:center;gap:3px;flex-shrink:0}
+.card-yr-lbl{font-size:7px;color:var(--muted);writing-mode:vertical-rl;transform:rotate(180deg);line-height:1;height:18px;display:flex;align-items:center;justify-content:center}
 
 /* COMBINED TIMELINE */
 .combined-tl{border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:80px}
@@ -193,7 +194,7 @@ h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,10vw,96px);line-heig
 
 footer{text-align:center;padding:28px 24px 44px;border-top:1px solid var(--border);color:var(--muted);font-size:12px}
 .maple{color:var(--red)}
-@media(max-width:600px){.time-unit{min-width:64px}.time-sep{font-size:56px}.teams-grid{grid-template-columns:1fr}.ctl-label{width:100px}}
+@media(max-width:600px){.time-unit{min-width:64px}.time-sep{font-size:56px}.teams-grid{grid-template-columns:1fr}.ctl-label{width:100px}.ctl-team-name{display:none}.ctl-team-logo{width:28px;height:28px;margin-bottom:0}}
 </style>
 </head>
 <body>
@@ -238,10 +239,10 @@ footer{text-align:center;padding:28px 24px 44px;border-top:1px solid var(--borde
 <div class="sec-head z1"><div class="sec-title">Team Droughts &amp; Cup History</div><div class="sec-line"></div></div>
 <div class="sort-bar z1">
   <span class="sort-label">Sort by</span>
-  <button class="sort-btn active" data-sort="cups">Most Cups</button>
-  <button class="sort-btn" data-sort="drought">Longest Drought</button>
-  <button class="sort-btn" data-sort="lastwin">Most Recent Win</button>
-  <button class="sort-btn" data-sort="odds">Odds</button>
+  <button class="sort-btn active" data-sort="drought">Longest Drought</button>
+  <!-- <button class="sort-btn" data-sort="cups">Most Cups</button> -->
+  <button class="sort-btn" data-sort="odds">2026</button>
+  <button class="sort-btn" data-sort="lastwin">Most Recent</button>
 </div>
 <div class="teams-grid z1" id="teams-grid"></div>
 
@@ -397,8 +398,8 @@ function closestHTML(t){
   if(!t.closest)return'';
   const{finals,game7}=t.closest;
   let rows='';
-  if(finals) rows+=`<div class="closest-item"><div class="closest-icon">🏒</div><div class="closest-text"><strong>Best Finals Run — ${finals.year}</strong>${finals.result} vs ${finals.opponent}<br><em>${finals.note}</em></div></div>`;
-  if(game7)  rows+=`<div class="closest-item"><div class="closest-icon">💔</div><div class="closest-text"><strong>Closest Game 7 — ${game7.year}</strong>${game7.result} vs ${game7.opponent}${game7.round?` · ${game7.round}`:''}<br><em>${game7.note}</em></div></div>`;
+  if(finals) rows+=`<div class="closest-item"><div class="closest-icon">🏒</div><div class="closest-text"><strong>Best Finals Run <span class="year-tag">${finals.year}</span></strong><br>${finals.result} vs ${finals.opponent}<br><em>${finals.note}</em></div></div>`;
+  if(game7)  rows+=`<div class="closest-item"><div class="closest-icon">💔</div><div class="closest-text"><strong>Closest Game 7 <span class="year-tag">${game7.year}</span></strong><br>${game7.result} vs ${game7.opponent}${game7.round?` · ${game7.round}`:''}<br><em>${game7.note}</em></div></div>`;
   if(!rows)return'';
   return`<div class="closest-wrap"><div class="sub-label">How Close They Got</div>${rows}</div>`;
 }
@@ -433,7 +434,7 @@ function statsHTML(t){
     </div>
     <div class="ts-item">
       <span class="ts-val" style="color:var(--finals)">${finalsApps}</span>
-      <div class="ts-lbl">Finals Apps</div>
+      <div class="ts-lbl">Finals</div>
     </div>
     <div class="ts-item">
       <span class="ts-val ${streakClass}">${streak}</span>
@@ -490,28 +491,28 @@ function buildCardTimeline(t){
   const years=[];
   for(let y=t.founded;y<=2025;y++) years.push(y);
 
-  // bars row
   const barsRow=document.createElement('div');
   barsRow.className='card-bars';
-  // labels row
-  const labelsRow=document.createElement('div');
-  labelsRow.className='card-yr-labels';
 
   years.forEach(y=>{
     const status=t.history[y]||null;
+    const col=document.createElement('div');
+    col.className='card-yr-col';
+
     const box=document.createElement('div');
     box.className=`card-yr-box ${status||'pre'}`;
     if(status) box.setAttribute('data-tip',`${y} — ${SLABELS[status]}`);
-    barsRow.appendChild(box);
 
     const lbl=document.createElement('span');
     lbl.className='card-yr-lbl';
-    lbl.textContent=y%5===0?String(y):'';
-    labelsRow.appendChild(lbl);
+    lbl.textContent=y%10===0?String(y):'';
+
+    col.appendChild(box);
+    col.appendChild(lbl);
+    barsRow.appendChild(col);
   });
 
   wrap.appendChild(barsRow);
-  wrap.appendChild(labelsRow);
 }
 
 // Render combined timeline — rows=years, cols=teams
@@ -562,7 +563,7 @@ combinedBody.appendChild(inner);
 
 // Render team cards
 const grid=document.getElementById('teams-grid');
-let currentSort='cups';
+let currentSort='drought';
 
 function sortedTeams(key){
   const arr=[...TEAMS];
@@ -596,10 +597,11 @@ function renderCards(key){
     ${droughtHTML(t)}
     <hr class="divider">
     ${statsHTML(t)}
-    <div class="team-summary">${t.summary}</div>
-    ${closestHTML(t)}
     <hr class="divider">
     ${oddsHTML(t)}
+    <hr class="divider">
+    <div class="team-summary">${t.summary}</div>
+    ${closestHTML(t)}
     <hr class="divider">
     ${cardTimelineHTML(t)}
   `;
@@ -730,7 +732,7 @@ function buildIntlView(leagueKey) {
     const tip = `${y} — ${L.legend[s]||'No Medal'}`;
     barsHTML += `<div class="intl-yr-col">
       <div class="intl-yr-box ${s}" ${s!=='skip'?`data-tip="${tip}"`:''}></div>
-      <span class="intl-yr-lbl">${y%4===0||years.length<15?y:''}</span>
+      <span class="intl-yr-lbl">${y}</span>
     </div>`;
   });
 
@@ -750,9 +752,9 @@ function buildIntlView(leagueKey) {
       <div class="intl-bars">${barsHTML}</div>
     </div>
     <div class="tl-legend" style="margin-top:14px;justify-content:center">
-      <div class="tl-legend-item"><div class="tl-legend-dot" style="background:var(--won)"></div>Gold</div>
-      <div class="tl-legend-item"><div class="tl-legend-dot" style="background:var(--finals)"></div>Silver</div>
-      <div class="tl-legend-item"><div class="tl-legend-dot" style="background:var(--playoffs)"></div>Bronze</div>
+      <div class="tl-legend-item"><div class="tl-legend-dot" style="background:#E8C46A"></div>Gold</div>
+      <div class="tl-legend-item"><div class="tl-legend-dot" style="background:#A8A9AD"></div>Silver</div>
+      <div class="tl-legend-item"><div class="tl-legend-dot" style="background:#A97142"></div>Bronze</div>
       <div class="tl-legend-item"><div class="tl-legend-dot" style="background:var(--missed);border:1px solid rgba(255,255,255,.1)"></div>No Medal</div>
     </div>
   `;
