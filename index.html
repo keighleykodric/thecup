@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bring the Cup Back</title>
+<title>Canada F***ing Sucks At Hockey</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root{--red:#D52B1E;--gold:#C9943A;--gold-light:#E8C46A;--white:#F8F4EE;--ink:#110E07;--ink-mid:#2A2218;--muted:#6A6055;--border:rgba(201,148,58,0.2);--won:#E8C46A;--finals:#D52B1E;--playoffs:#3A7A52;--missed:#1E1810}
@@ -20,15 +20,19 @@ h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,10vw,96px);line-heig
 .subtitle{font-family:'DM Serif Display',serif;font-style:italic;color:var(--muted);font-size:17px;margin-top:12px}
 
 /* NATIONAL COUNTER */
-.drought-wrap{max-width:860px;margin:0 auto 72px}
-.drought-counter{background:linear-gradient(135deg,rgba(213,43,30,.10) 0%,rgba(17,14,7,0) 55%,rgba(201,148,58,.07) 100%);border:1px solid var(--border);border-radius:20px;padding:44px 28px 36px;text-align:center;position:relative;overflow:hidden}
+.drought-wrap{max-width:1100px;margin:0 auto 72px}
+.drought-counter{background:linear-gradient(135deg,rgba(213,43,30,.10) 0%,rgba(17,14,7,0) 55%,rgba(201,148,58,.07) 100%);border:1px solid var(--border);border-radius:24px;padding:56px 32px 44px;text-align:center;position:relative;overflow:hidden}
 .drought-counter::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--red),var(--gold),var(--red),transparent)}
 .drought-label{font-family:'Bebas Neue',sans-serif;letter-spacing:4px;font-size:12px;color:var(--gold);margin-bottom:22px}
 .time-grid{display:flex;justify-content:center;align-items:flex-start;gap:8px;flex-wrap:wrap}
-.time-unit{text-align:center;min-width:96px}
-.time-value{font-family:'Bebas Neue',sans-serif;font-size:clamp(56px,9vw,96px);line-height:1;background:linear-gradient(180deg,var(--white) 0%,var(--gold-light) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block}
-.time-label{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-top:5px}
-.time-sep{font-family:'Bebas Neue',sans-serif;font-size:64px;color:var(--red);opacity:.4;line-height:1;padding-top:4px}
+.time-unit{text-align:center;min-width:120px}
+.time-unit.sm{min-width:72px}
+.time-value{font-family:'Bebas Neue',sans-serif;font-size:clamp(72px,13vw,148px);line-height:1;background:linear-gradient(180deg,#fff 0%,var(--gold-light) 55%,var(--gold) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block;filter:drop-shadow(0 0 28px rgba(201,148,58,.35))}
+.time-unit.sm .time-value{font-size:clamp(32px,5vw,56px);filter:none;opacity:.7}
+.time-unit.sm .time-label{font-size:8px}
+.time-label{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-top:8px}
+.time-sep{font-family:'Bebas Neue',sans-serif;font-size:96px;color:var(--red);opacity:.5;line-height:1;padding-top:6px;text-shadow:0 0 20px rgba(213,43,30,.5)}
+.time-sep.sm{font-size:44px;padding-top:3px;opacity:.3}
 .since-note{font-size:12px;color:var(--muted);margin-top:18px}
 .since-note strong{color:var(--gold-light);font-weight:500}
 
@@ -41,21 +45,22 @@ h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,10vw,96px);line-heig
 .team-card{border:1px solid var(--border);border-radius:16px;padding:26px 22px;position:relative;overflow:hidden;transition:transform .22s,border-color .22s}
 .team-card:hover{transform:translateY(-3px);border-color:var(--team-color,rgba(201,148,58,.45));box-shadow:0 8px 32px var(--team-glow,rgba(0,0,0,.3))}
 .team-card.champion{border-color:rgba(201,148,58,.4);background:linear-gradient(135deg,rgba(201,148,58,.07) 0%,rgba(17,14,7,.4) 100%)}
-.champ-badge{position:absolute;top:10px;left:14px;font-size:9px;letter-spacing:1.5px;color:var(--gold);background:rgba(17,14,7,.7);border:1px solid rgba(201,148,58,.4);padding:3px 8px;border-radius:20px;z-index:2;backdrop-filter:blur(4px)}
-.card-brand-strip{margin:-26px -22px 18px;height:96px;border-radius:15px 15px 0 0;overflow:hidden;position:relative;display:flex;align-items:center;justify-content:flex-end;padding:0 20px}
-.card-brand-strip::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(17,14,7,0) 40%,var(--ink-mid) 100%);pointer-events:none}
-.team-logo{width:80px;height:80px;object-fit:contain;flex-shrink:0;filter:drop-shadow(0 0 16px rgba(0,0,0,.7));position:relative;z-index:1}
-.team-header-row{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:14px}
+.champ-badge{position:absolute;top:10px;right:12px;font-size:9px;letter-spacing:1.5px;color:var(--gold);background:rgba(17,14,7,.7);border:1px solid rgba(201,148,58,.4);padding:3px 8px;border-radius:20px;z-index:2;backdrop-filter:blur(4px)}
+.card-brand-strip{margin:-26px -22px 14px;height:88px;border-radius:15px 15px 0 0;overflow:hidden;position:relative;display:flex;align-items:center;gap:14px;padding:0 18px}
+.card-brand-strip::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(17,14,7,0) 30%,rgba(17,14,7,.55) 100%);pointer-events:none}
+.team-logo{width:56px;height:56px;object-fit:contain;flex-shrink:0;filter:drop-shadow(0 0 12px rgba(0,0,0,.8));position:relative;z-index:1}
+.card-strip-title{flex:1;position:relative;z-index:1;min-width:0}
 .team-name{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:1px;line-height:1;margin-bottom:3px}
-.team-city{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
-.team-cups{display:flex;align-items:baseline;gap:6px;flex-shrink:0}
-.cups-n{font-family:'Bebas Neue',sans-serif;font-size:40px;line-height:1}
-.cups-l{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
-.cups-e{font-size:18px;margin-left:auto;opacity:.65}
+.team-city{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.5)}
+.team-cups{display:flex;flex-direction:column;align-items:flex-end;flex-shrink:0;position:relative;z-index:1}
+.cups-n{font-family:'Bebas Neue',sans-serif;font-size:36px;line-height:1}
+.cups-l{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.45);margin-top:2px}
+.cups-e{font-size:16px;margin-top:2px;opacity:.7}
 .divider{border:none;border-top:1px solid rgba(255,255,255,.05);margin:12px 0}
 .team-drought{display:flex;gap:8px;margin:0 0 12px;background:rgba(0,0,0,.22);border-radius:10px;padding:10px 12px;border:1px solid rgba(255,255,255,.05)}
 .td-unit{text-align:center;flex:1}
-.td-val{font-family:'Bebas Neue',sans-serif;font-size:20px;line-height:1;color:var(--gold-light);display:block}
+.td-val{font-family:'Bebas Neue',sans-serif;font-size:36px;line-height:1;color:var(--gold-light);display:block;filter:drop-shadow(0 0 8px rgba(201,148,58,.3))}
+.td-val.td-val-sm{font-size:24px;filter:none;opacity:.7}
 .td-lbl{font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
 .td-never{font-family:'DM Serif Display',serif;font-style:italic;color:var(--muted);font-size:13px;padding:8px 0;text-align:center;width:100%}
 .team-summary{font-size:12px;color:var(--muted);line-height:1.65}
@@ -67,6 +72,30 @@ h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,10vw,96px);line-heig
 .closest-text{font-size:11.5px;color:var(--muted);line-height:1.55}
 .closest-text strong{color:var(--white);font-weight:500;display:block;margin-bottom:2px}
 .closest-text em{color:rgba(232,196,106,.6);font-style:normal;font-size:11px}
+
+/* SORT BAR */
+.sort-bar{display:flex;align-items:center;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.sort-label{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-right:4px}
+.sort-btn{font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:1px;padding:6px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);color:var(--muted);cursor:pointer;transition:all .18s}
+.sort-btn:hover{border-color:rgba(201,148,58,.4);color:var(--white)}
+.sort-btn.active{background:rgba(201,148,58,.12);border-color:rgba(201,148,58,.5);color:var(--gold-light)}
+
+/* THIS YEAR'S ODDS */
+.odds-wrap{margin-top:12px;margin-bottom:4px}
+.odds-record{font-size:11px;color:var(--muted);margin-bottom:10px}
+.odds-record strong{color:var(--white);font-weight:500}
+.odds-record .odds-status{font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:2px 8px;border-radius:10px;margin-left:6px;vertical-align:middle}
+.odds-status.in{background:rgba(58,122,82,.3);color:#6ecf96;border:1px solid rgba(58,122,82,.4)}
+.odds-status.bubble{background:rgba(201,148,58,.15);color:var(--gold-light);border:1px solid rgba(201,148,58,.3)}
+.odds-status.out{background:rgba(213,43,30,.15);color:#f08080;border:1px solid rgba(213,43,30,.3)}
+.odds-status.eliminated{background:rgba(0,0,0,.3);color:var(--muted);border:1px solid rgba(255,255,255,.08)}
+.odds-bars{display:flex;flex-direction:column;gap:6px}
+.odds-bar-row{display:flex;align-items:center;gap:8px}
+.odds-bar-lbl{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);width:62px;flex-shrink:0}
+.odds-bar-track{flex:1;height:6px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden}
+.odds-bar-fill{height:100%;border-radius:3px;transition:width .4s}
+.odds-bar-pct{font-family:'Bebas Neue',sans-serif;font-size:13px;color:var(--white);width:34px;text-align:right;flex-shrink:0}
+.odds-note{font-size:10px;color:var(--muted);margin-top:8px;font-style:italic}
 
 /* TEAM STAT CHIPS */
 .team-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:12px}
@@ -102,19 +131,19 @@ h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,10vw,96px);line-heig
 .tl-legend{display:flex;gap:18px;flex-wrap:wrap}
 .tl-legend-item{display:flex;align-items:center;gap:6px;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}
 .tl-legend-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
-.combined-tl-body{padding:20px 24px 24px;overflow-x:auto}
-.ctl-inner{min-width:max-content}
-/* shared year axis at top */
-.ctl-axis{display:flex;gap:2px;padding-left:160px;margin-bottom:6px}
-.ctl-axis-lbl{width:9px;flex-shrink:0;font-size:8px;color:var(--muted);overflow:visible;white-space:nowrap;transform:rotate(-55deg);transform-origin:left center;display:block}
-.ctl-row{display:flex;align-items:center;gap:12px;margin-bottom:6px}
-.ctl-row:last-child{margin-bottom:0}
-.ctl-label{display:flex;align-items:center;gap:7px;width:148px;flex-shrink:0}
-.ctl-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-.ctl-name{font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:1px;color:var(--white);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.ctl-bars{display:flex;gap:2px;align-items:center}
-.ctly-box{width:9px;height:22px;border-radius:2px;cursor:default;position:relative;transition:transform .1s,filter .1s;flex-shrink:0}
-.ctly-box:hover{transform:scaleY(1.35);z-index:10;filter:brightness(1.4)}
+.combined-tl-body{padding:0 24px 24px}
+.ctl-inner{width:100%}
+/* team headers across the top */
+.ctl-head-row{display:grid;grid-template-columns:48px repeat(7,1fr);gap:3px;padding:16px 0 10px;border-bottom:1px solid var(--border);margin-bottom:6px}
+.ctl-yr-spacer{/* empty first cell */}
+.ctl-team-hdr{text-align:center;padding:0 4px}
+.ctl-team-logo{width:44px;height:44px;object-fit:contain;display:block;margin:0 auto 5px;filter:drop-shadow(0 0 6px rgba(0,0,0,.6))}
+.ctl-team-name{font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:1px;color:var(--white);display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* year rows */
+.ctl-row{display:grid;grid-template-columns:48px repeat(7,1fr);gap:3px;margin-bottom:3px;align-items:center}
+.ctl-yr-lbl{font-size:10px;color:var(--muted);text-align:right;padding-right:6px;font-family:'Bebas Neue',sans-serif;letter-spacing:1px}
+.ctly-box{width:100%;height:12px;border-radius:3px;cursor:default;position:relative;transition:filter .1s;flex-shrink:0}
+.ctly-box:hover{filter:brightness(1.5);z-index:10;}
 .ctly-box.won{background:var(--won);box-shadow:0 0 5px rgba(232,196,106,.5)}
 .ctly-box.finals{background:var(--finals)}
 .ctly-box.playoffs{background:var(--playoffs)}
@@ -124,7 +153,7 @@ h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,10vw,96px);line-heig
 
 footer{text-align:center;padding:28px 24px 44px;border-top:1px solid var(--border);color:var(--muted);font-size:12px}
 .maple{color:var(--red)}
-@media(max-width:600px){.time-unit{min-width:60px}.time-sep{font-size:44px}.teams-grid{grid-template-columns:1fr}.ctl-label{width:100px}}
+@media(max-width:600px){.time-unit{min-width:64px}.time-sep{font-size:56px}.teams-grid{grid-template-columns:1fr}.ctl-label{width:100px}}
 </style>
 </head>
 <body>
@@ -132,8 +161,8 @@ footer{text-align:center;padding:28px 24px 44px;border-top:1px solid var(--borde
 
 <header>
   <span class="leaf">🍁</span>
-  <h1>Bring the<br>Cup Back</h1>
-  <p class="subtitle">Canada's longest-running heartbreak, measured in seconds.</p>
+  <h1>Canada F***ing<br>Sucks At Hockey</h1>
+  <p class="subtitle">7 teams. 32 years. Zero cups. Someone had to say it.</p>
 </header>
 
 <div class="drought-wrap z1">
@@ -156,6 +185,13 @@ footer{text-align:center;padding:28px 24px 44px;border-top:1px solid var(--borde
 
 <!-- TEAM CARDS -->
 <div class="sec-head z1"><div class="sec-title">Team Droughts &amp; Cup History</div><div class="sec-line"></div></div>
+<div class="sort-bar z1">
+  <span class="sort-label">Sort by</span>
+  <button class="sort-btn active" data-sort="cups">Most Cups</button>
+  <button class="sort-btn" data-sort="drought">Longest Drought</button>
+  <button class="sort-btn" data-sort="lastwin">Most Recent Win</button>
+  <button class="sort-btn" data-sort="odds">Odds</button>
+</div>
 <div class="teams-grid z1" id="teams-grid"></div>
 
 <!-- COMBINED TIMELINE -->
@@ -173,13 +209,14 @@ footer{text-align:center;padding:28px 24px 44px;border-top:1px solid var(--borde
   <div class="combined-tl-body" id="combined-body"></div>
 </div>
 
-<footer>Made with <span class="maple">🍁</span> and a lot of patience. Someday, Canada. Someday.</footer>
+<footer>Made with <span class="maple">🍁</span> and unbridled rage. Someday, Canada. Probably not.</footer>
 </div></div>
 
 <script>
 const TEAMS = [
   {
     id:'mtl',name:'Canadiens',city:'Montréal',color:'#AF1E2D',color2:'#003DA5',logo:'https://assets.nhle.com/logos/nhl/svg/MTL_light.svg',cups:24,
+    odds:{w:41,l:21,otl:10,pts:92,gp:72,playoffPct:40,cupPct:4,status:'in',note:'Leading the Atlantic — strongest Canadian playoff hope this year.'},
     lastWin:new Date('1993-06-09T23:00:00'),champion:true,founded:1918,
     summary:"The most storied franchise in hockey history. Their late-70s dynasty — four straight Cups — remains the gold standard. 1993 was their last, and Canada's last.",
     closest:null,
@@ -187,6 +224,7 @@ const TEAMS = [
   },
   {
     id:'tor',name:'Maple Leafs',city:'Toronto',color:'#00205B',color2:'#5E9BCA',logo:'https://assets.nhle.com/logos/nhl/svg/TOR_light.svg',cups:13,
+    odds:{w:31,l:30,otl:13,pts:75,gp:74,playoffPct:1,cupPct:1,status:'out',note:'Well below a playoff spot with little time left. A lost season in Toronto.'},
     lastWin:new Date('1967-05-02T23:00:00'),champion:false,founded:1918,
     summary:"Thirteen championships, none since 1967. The longest active drought of any original six team. Every spring, Toronto believes. Every spring, Toronto grieves.",
     closest:{
@@ -197,6 +235,7 @@ const TEAMS = [
   },
   {
     id:'edm',name:'Oilers',city:'Edmonton',color:'#FF4C00',color2:'#00205B',logo:'https://assets.nhle.com/logos/nhl/svg/EDM_light.svg',cups:5,
+    odds:{w:37,l:28,otl:9,pts:83,gp:74,playoffPct:53,cupPct:2,status:'bubble',note:'On the playoff bubble in the tough Pacific. McDavid and Draisaitl making another push.'},
     lastWin:new Date('1990-05-24T23:00:00'),champion:false,founded:1980,
     summary:"The Gretzky dynasty — five Cups in seven years. The closest Canada has come since 1993 was 2024, falling to Florida in Game 7. So heartbreakingly close.",
     closest:{
@@ -207,6 +246,7 @@ const TEAMS = [
   },
   {
     id:'cgy',name:'Flames',city:'Calgary',color:'#D2001C',color2:'#F1BE48',logo:'https://assets.nhle.com/logos/nhl/svg/CGY_light.svg',cups:1,
+    odds:{w:30,l:34,otl:8,pts:68,gp:72,playoffPct:1,cupPct:1,status:'out',note:'Well out of contention. Another rebuild year in Calgary.'},
     lastWin:new Date('1989-05-25T23:00:00'),champion:false,founded:1981,
     summary:"One glorious night in 1989 — Lanny McDonald's last game, on enemy ice in Montréal. The city has been chasing that feeling for 35+ years.",
     closest:{
@@ -217,6 +257,7 @@ const TEAMS = [
   },
   {
     id:'ott',name:'Senators',city:'Ottawa',color:'#C52032',color2:'#C69214',logo:'https://assets.nhle.com/logos/nhl/svg/OTT_light.svg',cups:4,
+    odds:{w:38,l:25,otl:10,pts:86,gp:73,playoffPct:13,cupPct:1,status:'bubble',note:'Fighting for a wild card spot. Young core making a serious run.'},
     lastWin:new Date('1927-04-13T23:00:00'),champion:false,founded:1993,
     summary:"The original Senators won four Cups in the 1920s. The modern franchise came agonizingly close in 2007, losing to Anaheim in five. Still hunting.",
     closest:{
@@ -227,17 +268,19 @@ const TEAMS = [
   },
   {
     id:'wpg',name:'Jets',city:'Winnipeg',color:'#041E42',color2:'#AC162C',logo:'https://assets.nhle.com/logos/nhl/svg/WPG_light.svg',cups:0,
-    lastWin:null,champion:false,founded:2012,
-    summary:"Back since 2011, the Jets have built one of the loudest barns in hockey. Deep runs, passionate fans — no Cup yet, but the belief never wavers.",
+    odds:{w:31,l:30,otl:12,pts:74,gp:73,playoffPct:1,cupPct:1,status:'out',note:'Faded badly after a strong start. Sitting well outside the Wild Card.'},
+    lastWin:null,firstGame:new Date('1979-10-14T19:00:00'),champion:false,founded:1980,
+    summary:"Winnipeg's NHL story spans two eras. The original Jets played from 1979–1996, always dangerous but never champions, before relocating to Phoenix. The Jets returned in 2011 and the drought continues — 45+ years of Winnipeg hockey and still no Cup.",
     closest:{
       finals:null,
       game7:{year:2018,opponent:'Vegas Golden Knights',round:'Conference Finals',result:'Lost 4–1',note:'Eliminated in five by Vegas in their first conference finals. The barn was electric all spring.'}
     },
-    history:{2012:'playoffs',2013:'missed',2014:'missed',2015:'missed',2016:'missed',2017:'playoffs',2018:'playoffs',2019:'playoffs',2020:'missed',2021:'missed',2022:'playoffs',2023:'missed',2024:'missed',2025:'playoffs'}
+    history:{1980:'missed',1981:'missed',1982:'playoffs',1983:'playoffs',1984:'playoffs',1985:'playoffs',1986:'playoffs',1987:'playoffs',1988:'playoffs',1989:'playoffs',1990:'playoffs',1991:'playoffs',1992:'playoffs',1993:'playoffs',1994:'playoffs',1995:'playoffs',1996:'missed',2012:'playoffs',2013:'missed',2014:'missed',2015:'missed',2016:'missed',2017:'playoffs',2018:'playoffs',2019:'playoffs',2020:'missed',2021:'missed',2022:'playoffs',2023:'missed',2024:'missed',2025:'playoffs'}
   },
   {
     id:'van',name:'Canucks',city:'Vancouver',color:'#00843D',color2:'#00205B',logo:'https://assets.nhle.com/logos/nhl/svg/VAN_light.svg',cups:0,
-    lastWin:null,champion:false,founded:1971,
+    odds:{w:21,l:42,otl:8,pts:50,gp:71,playoffPct:0,cupPct:0,status:'eliminated',note:'Mathematically eliminated. One of the worst records in the league this season.'},
+    lastWin:null,firstGame:new Date('1970-10-09T19:00:00'),champion:false,founded:1971,
     summary:"Two heartbreaking Finals — 1982 and 1994. Pavel Bure. Trevor Linden. Game 7. The 1994 run still haunts a generation of fans on the west coast.",
     closest:{
       finals:{year:1994,opponent:'New York Rangers',result:'Lost 4–3',note:"Led Game 7 into the third period. Linden scored twice but Messier's Rangers held on."},
@@ -272,8 +315,9 @@ setInterval(updateNational,1000);updateNational();
 // Team counters
 function updateTeams(){
   TEAMS.forEach(t=>{
-    if(!t.lastWin)return;
-    const e=elapsed(t.lastWin);
+    const since=t.lastWin||t.firstGame;
+    if(!since)return;
+    const e=elapsed(since);
     ['y','d','h','m','s'].forEach(k=>{
       const el=document.getElementById(`${t.id}-${k}`);
       if(el)el.textContent=pad(e[k],k==='d'?3:2);
@@ -283,15 +327,17 @@ function updateTeams(){
 setInterval(updateTeams,1000);
 
 function droughtHTML(t){
-  if(!t.lastWin)return`<div class="team-drought"><div class="td-never">No championship — ever</div></div>`;
-  const e=elapsed(t.lastWin);
+  const since=t.lastWin||t.firstGame;
+  const sinceLabel=t.lastWin?null:`Since first game`;
+  if(!since)return`<div class="team-drought"><div class="td-never">No championship — ever</div></div>`;
+  const e=elapsed(since);
   return`<div class="team-drought">
     <div class="td-unit"><span class="td-val" id="${t.id}-y">${pad(e.y)}</span><div class="td-lbl">Yrs</div></div>
-    <div class="td-unit"><span class="td-val" id="${t.id}-d">${pad(e.d,3)}</span><div class="td-lbl">Days</div></div>
-    <div class="td-unit"><span class="td-val" id="${t.id}-h">${pad(e.h)}</span><div class="td-lbl">Hrs</div></div>
-    <div class="td-unit"><span class="td-val" id="${t.id}-m">${pad(e.m)}</span><div class="td-lbl">Min</div></div>
-    <div class="td-unit"><span class="td-val" id="${t.id}-s">${pad(e.s)}</span><div class="td-lbl">Sec</div></div>
-  </div>`;
+    <div class="td-unit"><span class="td-val td-val-sm" id="${t.id}-d">${pad(e.d,3)}</span><div class="td-lbl">Days</div></div>
+    <div class="td-unit"><span class="td-val td-val-sm" id="${t.id}-h">${pad(e.h)}</span><div class="td-lbl">Hrs</div></div>
+    <div class="td-unit"><span class="td-val td-val-sm" id="${t.id}-m">${pad(e.m)}</span><div class="td-lbl">Min</div></div>
+    <div class="td-unit"><span class="td-val td-val-sm" id="${t.id}-s">${pad(e.s)}</span><div class="td-lbl">Sec</div></div>
+  </div>${sinceLabel?`<div class="td-never">${sinceLabel} — still waiting</div>`:''}`;
 }
 
 function closestHTML(t){
@@ -343,6 +389,41 @@ function statsHTML(t){
   </div>${lastPlayoff?`<div class="ts-last-playoff">Last playoff: <span style="color:var(--white);font-weight:500">${lastPlayoff}</span></div>`:''}`;
 }
 
+function oddsHTML(t){
+  if(!t.odds) return '';
+  const o=t.odds;
+  const gp=o.gp, gamesLeft=82-gp;
+  const ptPct=Math.round(o.pts/(gp*2)*100);
+  const statusLabels={in:'In Playoffs',bubble:'On the Bubble',out:'Out',eliminated:'Eliminated'};
+  const playoffFill=o.status==='eliminated'?'#333':o.playoffPct>=50?'#3A7A52':o.playoffPct>=20?'#C9943A':'#8B3A3A';
+  const cupFill='#C9943A';
+  return`<div class="odds-wrap">
+    <div class="sub-label">2025–26 Season</div>
+    <div class="odds-record">
+      <strong>${o.w}–${o.l}–${o.otl}</strong> · ${o.pts} pts · ${gamesLeft} games left
+      <span class="odds-status ${o.status}">${statusLabels[o.status]}</span>
+    </div>
+    <div class="odds-bars">
+      <div class="odds-bar-row">
+        <div class="odds-bar-lbl">Playoffs</div>
+        <div class="odds-bar-track"><div class="odds-bar-fill" style="width:${o.playoffPct}%;background:${playoffFill}"></div></div>
+        <div class="odds-bar-pct">${o.playoffPct}%</div>
+      </div>
+      <div class="odds-bar-row">
+        <div class="odds-bar-lbl">Win Cup</div>
+        <div class="odds-bar-track"><div class="odds-bar-fill" style="width:${Math.min(o.cupPct*5,100)}%;background:${cupFill}"></div></div>
+        <div class="odds-bar-pct">${o.cupPct}%</div>
+      </div>
+      <div class="odds-bar-row">
+        <div class="odds-bar-lbl">Pt %</div>
+        <div class="odds-bar-track"><div class="odds-bar-fill" style="width:${ptPct}%;background:rgba(255,255,255,.2)"></div></div>
+        <div class="odds-bar-pct">${ptPct}%</div>
+      </div>
+    </div>
+    <div class="odds-note">${o.note}</div>
+  </div>`;
+}
+
 function cardTimelineHTML(t){
   return`<div class="card-tl-wrap">
     <div class="sub-label">Season Timeline</div>
@@ -380,34 +461,36 @@ function buildCardTimeline(t){
   wrap.appendChild(labelsRow);
 }
 
-// Render combined timeline
+// Render combined timeline — rows=years, cols=teams
 const combinedBody=document.getElementById('combined-body');
 const inner=document.createElement('div');
 inner.className='ctl-inner';
 
-// axis label row
-const axisRow=document.createElement('div');
-axisRow.className='ctl-axis';
-ALL_YEARS.forEach(y=>{
-  const lbl=document.createElement('span');
-  lbl.className='ctl-axis-lbl';
-  lbl.textContent=y%5===0?String(y):'';
-  axisRow.appendChild(lbl);
-});
-inner.appendChild(axisRow);
-
+// Team header row (sticky)
+const headRow=document.createElement('div');
+headRow.className='ctl-head-row';
+const spacer=document.createElement('div');
+spacer.className='ctl-yr-spacer';
+headRow.appendChild(spacer);
 TEAMS.forEach(t=>{
+  const hdr=document.createElement('div');
+  hdr.className='ctl-team-hdr';
+  hdr.innerHTML=`<img class="ctl-team-logo" src="${t.logo}" alt="${t.name}" loading="lazy" onerror="this.style.display='none'"><span class="ctl-team-name">${t.name}</span>`;
+  headRow.appendChild(hdr);
+});
+inner.appendChild(headRow);
+
+// One row per year (newest first)
+ALL_YEARS.forEach(y=>{
   const row=document.createElement('div');
   row.className='ctl-row';
 
-  const label=document.createElement('div');
-  label.className='ctl-label';
-  label.innerHTML=`<div class="ctl-dot" style="background:${t.color}"></div><div class="ctl-name">${t.city} ${t.name}</div>`;
+  const lbl=document.createElement('div');
+  lbl.className='ctl-yr-lbl';
+  lbl.textContent=y%5===0||y===ALL_YEARS[0]?String(y):'';
+  row.appendChild(lbl);
 
-  const bars=document.createElement('div');
-  bars.className='ctl-bars';
-
-  ALL_YEARS.forEach(y=>{
+  TEAMS.forEach(t=>{
     const box=document.createElement('div');
     if(y<t.founded){
       box.className='ctly-box gap';
@@ -416,11 +499,9 @@ TEAMS.forEach(t=>{
       box.className=`ctly-box ${status||'missed'}`;
       if(status) box.setAttribute('data-tip',`${t.name} ${y} — ${SLABELS[status]}`);
     }
-    bars.appendChild(box);
+    row.appendChild(box);
   });
 
-  row.appendChild(label);
-  row.appendChild(bars);
   inner.appendChild(row);
 });
 
@@ -428,22 +509,35 @@ combinedBody.appendChild(inner);
 
 // Render team cards
 const grid=document.getElementById('teams-grid');
-TEAMS.forEach(t=>{
+let currentSort='cups';
+
+function sortedTeams(key){
+  const arr=[...TEAMS];
+  if(key==='cups') return arr.sort((a,b)=>b.cups-a.cups);
+  if(key==='drought') return arr.sort((a,b)=>(a.lastWin||a.firstGame||new Date(0))-(b.lastWin||b.firstGame||new Date(0)));
+  if(key==='lastwin') return arr.sort((a,b)=>(b.lastWin||new Date(0))-(a.lastWin||new Date(0)));
+  if(key==='odds') return arr.sort((a,b)=>(b.odds?.playoffPct||0)-(a.odds?.playoffPct||0));
+  return arr;
+}
+
+function renderCards(key){
+  grid.innerHTML='';
+  sortedTeams(key).forEach(t=>{
   const emoji=t.cups===0?'🫗':'';
   const card=document.createElement('div');
   card.className=`team-card${t.champion?' champion':''}`;
   card.style.cssText=`--team-color:${t.color}99;--team-glow:${t.color}33`;
   card.innerHTML=`
-    <div class="card-brand-strip" style="background:linear-gradient(135deg,${t.color}55 0%,${t.color2}33 60%,rgba(17,14,7,.6) 100%)">
-      ${t.champion?'<div class="champ-badge">★ Canada\'s Last</div>':''}
+    <div class="card-brand-strip" style="background:linear-gradient(135deg,${t.color}66 0%,${t.color2}44 60%,rgba(17,14,7,.5) 100%)">
       <img class="team-logo" src="${t.logo}" alt="${t.name}" loading="lazy" onerror="this.style.display='none'">
-    </div>
-    <div class="team-header-row">
-      <div><div class="team-name">${t.name}</div><div class="team-city">${t.city}</div></div>
+      <div class="card-strip-title">
+        <div class="team-name">${t.name}</div>
+        <div class="team-city">${t.city}</div>
+      </div>
       <div class="team-cups">
         <span class="cups-n" style="color:${t.cups>0?'var(--gold-light)':'var(--muted)'}">${t.cups}</span>
         <span class="cups-l">${t.cups===1?'Cup':'Cups'}</span>
-        <span class="cups-e">${emoji}</span>
+        ${emoji?`<span class="cups-e">${emoji}</span>`:''}
       </div>
     </div>
     ${droughtHTML(t)}
@@ -452,10 +546,24 @@ TEAMS.forEach(t=>{
     <div class="team-summary">${t.summary}</div>
     ${closestHTML(t)}
     <hr class="divider">
+    ${oddsHTML(t)}
+    <hr class="divider">
     ${cardTimelineHTML(t)}
   `;
-  grid.appendChild(card);
-  buildCardTimeline(t);
+    grid.appendChild(card);
+    buildCardTimeline(t);
+  });
+}
+
+renderCards(currentSort);
+
+document.querySelectorAll('.sort-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    currentSort=btn.dataset.sort;
+    document.querySelectorAll('.sort-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    renderCards(currentSort);
+  });
 });
 </script>
 </body>
